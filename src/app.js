@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //import { useState } from "react";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
+import HomePage from "./pages/Home";
+import LoginPage from "./pages/Login";
+import SignUpPage from "./pages/SignUp";
 
 
 export default function App() {
