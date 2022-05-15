@@ -28,17 +28,20 @@ export default function SignUpPage() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (formData.password !== formData.confirmPassword)
-      console.log("senhas tem que ser iguais")
+    if (formData.password !== formData.confirmPassword) {
+      setMessage({ type: "error", text: "As senhas devem ser iguais!" });
+      return;
+    }
 
     try {
       delete formData.confirmPassword;
       console.log(formData)
       await api.signUp(formData);
-      navigate("/login")
       setMessage({ type: "success", text: "Cadastro efetuado com sucesso!" });
+      navigate("/login")
     } catch (error) {
-      console.log(error)
+      setMessage({ type: "error", text: error.response.data });
+      return
     }
   }
 
@@ -53,6 +56,7 @@ export default function SignUpPage() {
           placeholder="Entre com um email"
           onChange={handleInput}
           value={formData.email}
+          required
         />
         <input
           type='text'
@@ -60,6 +64,7 @@ export default function SignUpPage() {
           placeholder="Escolha seu nickname"
           onChange={handleInput}
           value={formData.name}
+          required
         />
         <input
           type='password'
@@ -67,6 +72,7 @@ export default function SignUpPage() {
           placeholder="Escolha sua senha"
           onChange={handleInput}
           value={formData.password}
+          required
         />
         <input
           type='password'
@@ -74,6 +80,7 @@ export default function SignUpPage() {
           placeholder="Confirme sua senha"
           onChange={handleInput}
           value={formData.confirmPassword}
+          required
         />
         <Box sx={boxStyle}>
           <Link to={"/login"}>

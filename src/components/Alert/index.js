@@ -5,7 +5,7 @@ export default function Alert() {
   const { message, handleClose } = useAlert();
 
   return (
-    <Snackbar open={!!message} autoHideDuration={1000} onClose={handleClose}>
+    <Snackbar open={!!message} autoHideDuration={6000} onClose={handleClose}>
       <MUIAlert
         variant="filled"
         onClose={handleClose}

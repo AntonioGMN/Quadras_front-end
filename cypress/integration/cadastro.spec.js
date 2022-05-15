@@ -20,5 +20,14 @@ describe('test sign-up and login', () => {
     cy.get('div button').click();
     cy.wait("@signUp");
     cy.url().should("eq", "http://localhost:3000/login");
+
+    cy.get('input[placeholder="Entre com seu email"]').type(userDate.email);
+    cy.get('input[placeholder="Entre com sua senha"]').type(userDate.password);
+
+    cy.intercept("post", '/login').as("login");
+    cy.get('div button').click();
+    cy.wait("@login");
+    cy.url().should("eq", "http://localhost:3000/home");
+
   })
 })
