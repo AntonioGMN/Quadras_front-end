@@ -9,9 +9,11 @@ import { Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react'
 import * as api from '../../services/apiService'
+import { useAlert } from "../../contexts/AlertContext";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
+  const { setMessage } = useAlert()
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -34,6 +36,7 @@ export default function SignUpPage() {
       console.log(formData)
       await api.signUp(formData);
       navigate("/login")
+      setMessage({ type: "success", text: "Cadastro efetuado com sucesso!" });
     } catch (error) {
       console.log(error)
     }
