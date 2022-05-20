@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
   getGeocode,
@@ -14,17 +14,17 @@ import {
 import "@reach/combobox/styles.css";
 import { Box, Button } from "@mui/material";
 
-export default function HandlerMap({ setSearching }) {
+export default function HandlerMap({ setSearching, handlerSearch }) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyBbHskgHw328YYFNX8ZCnuQ8k69_dwx74Y",
     libraries: ["places"],
   });
 
   if (!isLoaded) return <div>Loading...</div>;
-  return <Map setSearching={setSearching} />;
+  return <Map setSearching={setSearching} handlerSearch={handlerSearch} />;
 }
 
-function Map({ setSearching }) {
+function Map({ setSearching, handlerSearch }) {
   const center = useMemo(
     () => ({ lat: -5.812012999999999, lng: -35.204903 }),
     []
@@ -34,7 +34,10 @@ function Map({ setSearching }) {
   return (
     <Box sx={boxStyle}>
       <Box style={PlacesAutocompleteStyle}>
-        <PlacesAutocomplete setSelected={setSelected} />
+        <PlacesAutocomplete
+          setSelected={setSelected}
+          handlerSearch={handlerSearch}
+        />
         <Button
           onClick={() => {
             setSearching(false);
@@ -58,7 +61,7 @@ function Map({ setSearching }) {
   );
 }
 
-function PlacesAutocomplete({ setSelected }) {
+function PlacesAutocomplete({ setSelected, handlerSearch }) {
   const {
     ready,
     value,
@@ -68,10 +71,10 @@ function PlacesAutocomplete({ setSelected }) {
   } = usePlacesAutocomplete();
 
   async function handleSelect(address) {
-    console.log(address);
     setValue(address, false);
     clearSuggestions();
 
+    handlerSearch(address);
     const results = await getGeocode({ address });
     const { lat, lng } = await getLatLng(results[0]);
     setSelected({ lat, lng });
@@ -97,6 +100,7 @@ function PlacesAutocomplete({ setSelected }) {
     </Combobox>
   );
 }
+
 const mapStyle = {
   width: "100%",
   height: "600px",

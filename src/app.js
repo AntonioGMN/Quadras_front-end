@@ -4,7 +4,7 @@ import AuthProvide from "./contexts/AuthContext";
 import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import SignUpPage from "./pages/SignUp";
-import NewGamePage from "./pages/NewGame";
+import NewGamePage from "./pages/NewMeeting";
 
 export default function App() {
   return (

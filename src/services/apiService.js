@@ -23,8 +23,11 @@ export function login(user) {
 }
 
 export function findUser(token) {
-  const config = createConfig(token)
-  return instance.get("/users", config)
+  const config = createConfig(token);
+  return instance.get("/users", config);
 }
 
-
+export function createMeeting(body, token) {
+  const config = createConfig(token);
+  return instance.post("/meeting", body, config);
+}
