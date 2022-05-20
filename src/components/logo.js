@@ -7,9 +7,8 @@ export default function Logo() {
 }
 
 const LogoStyled = styled.div`
-	width: 100%;
+	width: 300px;
 	height: 100px;
-  margin-bottom: 25px;
 
   font-family: 'Saira Stencil One', cursive;
   font-size: 60px;

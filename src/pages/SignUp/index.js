@@ -29,14 +29,16 @@ export default function SignUpPage() {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      setMessage({ type: "error", text: "As senhas devem ser iguais!" });
-      return;
+      return setMessage({ type: "error", text: "As senhas devem ser iguais!" });
     }
 
     try {
-      delete formData.confirmPassword;
-      console.log(formData)
-      await api.signUp(formData);
+      const body = {
+        email: formData.email,
+        name: formData.name,
+        password: formData.password,
+      }
+      await api.signUp(body);
       setMessage({ type: "success", text: "Cadastro efetuado com sucesso!" });
       navigate("/login")
     } catch (error) {

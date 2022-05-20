@@ -14,13 +14,9 @@ export default function AuthProvider({ children }) {
 
   async function logout() {
     localStorage.clear();
-    window.location.replace("/login");
+    document.location.reload(true);
   }
 
-  // function vadadateToken() {
-  //   const persistedToken = JSON.parse(localStorage.getItem("token"));
-  //   if (!persistedToken) window.location.replace("/login");
-  // }
 
   return (
     <AuthContext.Provider value={{ token, login, logout }}>

@@ -1,37 +1,31 @@
-import Logo from "../../components/logo";
-import Centralizar from "../../components/centralize";
-import Form from "../../components/Form";
-import Subtitulo from "../../components/subtitulo";
-import { Button } from "@mui/material";
-import { Box } from "@mui/material";
+import styled from 'styled-components'
+import Hearder from '../../components/Hearder'
+import { Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
+export default function HomePage () {
+  const navegate = useNavigate()
 
-export default function HomePage() {
   return (
-    <Centralizar>
-      <Logo />
-      <Form>
-        <Subtitulo >Login:</Subtitulo>
-        <input type='email' placeholder="Entre com seu email"></input>
-        <input type='password' placeholder="Entre com sua senha"></input>
-        <Box sx={boxStyle}>
-          <p style={pStyle}>Ainda não possuo cadastro</p>
-          <Button variant="contained">Entrar</Button>
-        </Box>
-      </Form>
-    </Centralizar >
+    <>
+      <Hearder />
+      <MainStyle>
+        <Button
+          variant="contained"
+          onClick={() => {
+            navegate('/NewGame')
+          }}
+        >
+          Marque um novo jogo
+        </Button>
+      </MainStyle>
+    </>
   )
 }
 
-const boxStyle = {
-  width: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  fontSize: '16px'
-}
+const MainStyle = styled.main`
+  width: 100%;
 
-const pStyle = {
-  color: "rgb(114 113 113)",
-  fontSize: "14px"
-}
+  display: flex;
+  flex-direction: column;
+`

@@ -1,5 +1,4 @@
 import { faker } from "@faker-js/faker";
-import { signUp } from "../../src/services/apiService";
 
 describe('test sign-up and login', () => {
   const userDate = {
@@ -27,7 +26,6 @@ describe('test sign-up and login', () => {
     cy.intercept("post", '/login').as("login");
     cy.get('div button').click();
     cy.wait("@login");
-    cy.url().should("eq", "http://localhost:3000/home");
-
+    cy.url().should("eq", "http://localhost:3000/");
   })
 })

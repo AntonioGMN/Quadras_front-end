@@ -22,7 +22,9 @@ export function login(user) {
   return instance.post("/login", user);
 }
 
-export function logout(token) {
-  const config = createConfig(token);
-  return instance.delete("/logout", config);
+export function findUser(token) {
+  const config = createConfig(token)
+  return instance.get("/users", config)
 }
+
+
