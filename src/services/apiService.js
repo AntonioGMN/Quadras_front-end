@@ -31,3 +31,8 @@ export function createMeeting(body, token) {
   const config = createConfig(token);
   return instance.post("/meeting", body, config);
 }
+
+export function getMeeting(token) {
+  const config = createConfig(token);
+  return instance.get("/meeting", config);
+}

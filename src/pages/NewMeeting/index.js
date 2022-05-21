@@ -78,7 +78,7 @@ export default function NewGamePage() {
               type="time"
               name="inicio"
               onChange={handleInput}
-              value={formData.incio}
+              value={formData.inicio}
               required
             ></input>
             <label>Hório aproximado de término:</label>

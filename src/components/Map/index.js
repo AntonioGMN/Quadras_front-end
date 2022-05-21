@@ -16,7 +16,7 @@ import { Box, Button } from "@mui/material";
 
 export default function HandlerMap({ setSearching, handlerSearch }) {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBbHskgHw328YYFNX8ZCnuQ8k69_dwx74Y",
+    googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries: ["places"],
   });
 
