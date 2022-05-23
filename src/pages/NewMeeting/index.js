@@ -1,7 +1,7 @@
 import Hearder from "../../components/Hearder";
 import Form from "../../components/Form";
 import MainStyle from "../../components/main";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAlert } from "../../contexts/AlertContext";
 import { Button, Box } from "@mui/material";
 import HandlerMap from "../../components/Map";
@@ -23,6 +23,15 @@ export default function NewGamePage() {
     local: "",
   });
 
+  useEffect(() => {
+    if (user === null) {
+      setMessage({
+        type: "warning",
+        text: "É preciso está logado para marcar um jogo",
+      });
+    }
+  }, [user]);
+
   function handleInput(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
@@ -34,9 +43,13 @@ export default function NewGamePage() {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    if (user !== null)
+      setMessage({
+        type: "error",
+        text: "É preciso está logado para marcar um jogo",
+      });
+
     try {
-      console.log(formData);
-      console.log(user);
       const body = { ...formData, creatorId: user.id };
       await api.createMeeting(body, token);
       setMessage({ type: "success", text: "Reunião marcada com sucesso" });

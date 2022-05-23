@@ -1,12 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Avatar } from "@mui/material";
 import Logo from "../logo";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import * as api from "../../services/apiService";
-import { useEffect, useState } from "react";
 import UserMenu from "../Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { boxStyle, HearderStyle, LoginButton, SelectSyle } from "./styles";
+import { pink } from "@mui/material/colors";
 
 export default function Hearder() {
   const { user, logout } = useAuth();
@@ -25,7 +24,7 @@ export default function Hearder() {
         </Box>
       ) : (
         <SelectSyle>
-          <p>{user.name}</p>
+          <Avatar />
           <UserMenu>
             <MenuItem onClick={logout}>Logout</MenuItem>
           </UserMenu>

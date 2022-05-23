@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
   getGeocode,
@@ -48,7 +48,7 @@ function Map({ setSearching, handlerSearch }) {
       </Box>
 
       <GoogleMap
-        zoom={10}
+        zoom={20}
         center={selected ? selected : center}
         mapContainerStyle={mapStyle}
         options={{

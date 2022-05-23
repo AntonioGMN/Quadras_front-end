@@ -46,13 +46,16 @@ export default function HomePage() {
                 <ArticleStyle key={item.id}>
                   <img
                     alt="erro"
-                    src={`https://maps.googleapis.com/maps/api/staticmap?center=${item.local}&size=300x300&key=${process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+                    src={`https://maps.googleapis.com/maps/api/staticmap?center=${item.local}&size=400x300&key=${process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
                   ></img>
                   <SubArticle>
                     <p>{item.name}</p>
-                    <p>Local: {item.local}</p>
                     <p>
-                      Horio: {item.inicio}~{item.termino}
+                      <strong>Local:</strong> {item.local}
+                    </p>
+                    <p>
+                      <strong>Hórario: </strong>
+                      {item.inicio}~{item.termino}
                     </p>
                   </SubArticle>
                 </ArticleStyle>
@@ -87,4 +90,7 @@ const SubArticle = styled.section`
   padding: 5px;
   margin: 10px;
   border-radius: 10px;
-s`;
+  gap: 5px;
+  font-size: 18px;
+  font-weight: 500;
+`;
