@@ -6,7 +6,7 @@
 Esse é um site onde você pode marcar e descobrir se existe álgum partida de basquete perto de você em uma d, para que você possa conhecer pessoas dispostas a praticar seu esporte favorito    
 
 
-##Alguem funcionalidas 
+## Algumas funcionalidas 
 
 - Sign Up
 - Login
